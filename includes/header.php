@@ -22,9 +22,13 @@
     <style>
         body {
             font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
         .header {
             transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         .header.scrolled {
             height: 70px;
@@ -40,6 +44,13 @@
         .novel-card:hover .novel-title {
             color: #f9f9f9;
         }
+        .mobile-menu {
+            transition: all 0.3s ease;
+            transform: translateX(100%);
+        }
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
     </style>
 </head>
 <body class="bg-[#2e2e2e] text-[#f9f9f9]">
@@ -47,25 +58,38 @@
     <header class="header fixed top-0 left-0 w-full h-[60px] bg-[#2e2e2e] z-50">
         <div class="container mx-auto px-4 h-full flex items-center justify-between">
             <!-- Logo -->
-            <a href="/" class="text-2xl font-bold">OnsenHub</a>
+            <a href="/" class="text-2xl font-bold hover:text-[#f9f9f9] transition-colors">OnsenHub</a>
             
-            <!-- Navigation -->
+            <!-- Desktop Navigation -->
             <nav class="hidden md:flex space-x-8">
                 <a href="/" class="hover:text-gray-300 transition-colors">Home</a>
                 <a href="/browse" class="hover:text-gray-300 transition-colors">Browse</a>
                 <a href="/create" class="hover:text-gray-300 transition-colors">Create</a>
             </nav>
             
-            <!-- Auth Buttons -->
+            <!-- Desktop Auth Buttons -->
             <div class="hidden md:flex space-x-4">
                 <a href="/signin" class="px-4 py-2 hover:text-gray-300 transition-colors">Sign In</a>
                 <a href="/signup" class="px-4 py-2 bg-[#f9f9f9] text-[#2e2e2e] rounded hover:bg-gray-200 transition-colors">Sign Up</a>
             </div>
             
             <!-- Mobile Menu Button -->
-            <button class="md:hidden text-2xl">☰</button>
+            <button id="mobileMenuBtn" class="md:hidden text-2xl hover:text-gray-300 transition-colors">☰</button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="mobile-menu fixed top-[60px] right-0 w-64 h-screen bg-[#2e2e2e] p-4 md:hidden">
+            <nav class="flex flex-col space-y-4">
+                <a href="/" class="hover:text-gray-300 transition-colors">Home</a>
+                <a href="/browse" class="hover:text-gray-300 transition-colors">Browse</a>
+                <a href="/create" class="hover:text-gray-300 transition-colors">Create</a>
+                <div class="pt-4 border-t border-gray-700">
+                    <a href="/signin" class="block py-2 hover:text-gray-300 transition-colors">Sign In</a>
+                    <a href="/signup" class="block py-2 hover:text-gray-300 transition-colors">Sign Up</a>
+                </div>
+            </nav>
         </div>
     </header>
 
     <!-- Main Content Wrapper -->
-    <main class="pt-[80px]"> 
+    <main class="flex-grow pt-[80px]"> 
